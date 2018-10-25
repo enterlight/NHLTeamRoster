@@ -20,13 +20,9 @@ var Player = React.createClass({
 	render: function() {
 		let table = [];
 
-		console.log(this.props.info);
-
         for (var key in this.props.info) {
             if (this.props.info.hasOwnProperty(key)) {
-            	console.log(key);
-            	console.log(this.props.info[key]);
-				table.push(<tr><td>{key}</td><td>{this.props.info[key]}</td></tr>);
+				table.push(<tr><td >{key}</td><td className="bold">{this.props.info[key]}</td></tr>);
             }
         }
 

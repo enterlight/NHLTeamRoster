@@ -1,8 +1,6 @@
 import TeamList from './TeamList'
 import Player from './Player'
 
-import '../../css/styles.css'
-
 var TeamRoster = React.createClass({
 
 	getInitialState : function() {
@@ -69,7 +67,7 @@ var TeamRoster = React.createClass({
         if ( this.state.playerInfo.id == playerId ) {
             return 'active';
         }
-        return '';
+        return 'normal';
 	},
 
 
@@ -79,9 +77,12 @@ var TeamRoster = React.createClass({
 
 	render: function() {
 
-        let items = this.state.allPlayers.map((player) =>
-            <li onClick={() => { this.getPlayer(player.id)}}  className={this.getPlayerClass(player.id)} >{player.fullName} - {player.position}</li>
-   		);
+        let items = this.state.allPlayers.sort((a,b) => {
+            return (a.position  > b.position  ? 1 : a.position  < b.position ? -1 : 0);
+        })
+        .map((player) =>
+                <li onClick={() => { this.getPlayer(player.id)}}  className={this.getPlayerClass(player.id)} >{player.fullName} - {player.position}</li>
+        );
 		return (
 
             <div>
